@@ -1,15 +1,12 @@
-
 # SAP SD Knowledge Agent - Streamlit Cloud App (v1)
 # Features: Chat interface, SAP Help content search, source paragraph display, bookmark option
 
 import streamlit as st
-from langchain_openai import OpenAIEmbeddings
-from langchain_openai import ChatOpenAI
+from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain.vectorstores import Chroma
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.document_loaders import WebBaseLoader
 from langchain.chains import RetrievalQA
-from langchain.llms import OpenAI
 import os
 
 # Load environment variables
@@ -20,19 +17,9 @@ st.set_page_config(page_title="SAP SD Knowledge Agent", layout="wide")
 st.title("📘 SAP SD Knowledge Agent")
 
 # Initialize embedding model and LLM
-
-os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
-
-
-embeddings = OpenAIEmbeddings(
-    model="text-embedding-ada-002",
-    openai_api_key=os.getenv("OPENAI_API_KEY")
-)
-llm = ChatOpenAI(
-    temperature=0.2,
-    model="gpt-3.5-turbo",  # or "gpt-4"
-    openai_api_key=os.getenv("OPENAI_API_KEY")
-)
+openai_key = os.getenv("OPENAI_API_KEY")
+embeddings = OpenAIEmbeddings(model="text-embedding-ada-002", openai_api_key=openai_key)
+llm = ChatOpenAI(temperature=0.2, model="gpt-3.5-turbo", openai_api_key=openai_key)
 
 # Load and split documents
 @st.cache_resource
