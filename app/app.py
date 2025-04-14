@@ -3,7 +3,7 @@
 # Features: Chat interface, SAP Help content search, source paragraph display, bookmark option
 
 import streamlit as st
-from langchain.embeddings import OpenAIEmbeddings
+from langchain_community.embeddings import OpenAIEmbeddings
 from langchain.vectorstores import Chroma
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.document_loaders import WebBaseLoader
@@ -20,9 +20,10 @@ st.title("📘 SAP SD Knowledge Agent")
 
 # Initialize embedding model and LLM
 
-openai_api_key = os.getenv("OPENAI_API_KEY")
+os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 
-embeddings = OpenAIEmbeddings(openai_api_key=openai_api_key)
+
+embeddings = OpenAIEmbeddings()
 llm = OpenAI(temperature=0.2, openai_api_key=openai_api_key)
 
 
