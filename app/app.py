@@ -19,8 +19,12 @@ st.set_page_config(page_title="SAP SD Knowledge Agent", layout="wide")
 st.title("📘 SAP SD Knowledge Agent")
 
 # Initialize embedding model and LLM
-embeddings = OpenAIEmbeddings()
-llm = OpenAI(temperature=0.2)
+
+openai_api_key = os.getenv("OPENAI_API_KEY")
+
+embeddings = OpenAIEmbeddings(openai_api_key=openai_api_key)
+llm = OpenAI(temperature=0.2, openai_api_key=openai_api_key)
+
 
 # Load and split documents
 @st.cache_resource
