@@ -1,5 +1,6 @@
-streamlit
-langchain
-openai
-chromadb
-python-dotenv
+streamlit==1.33.0
+openai==1.14.3
+langchain==0.1.14
+chromadb==0.4.22
+python-dotenv==1.0.1
+tqdm==4.66.2
