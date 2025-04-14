@@ -24,7 +24,7 @@ os.environ["OPENAI_API_KEY"] = os.getenv("OPENAI_API_KEY")
 
 
 embeddings = OpenAIEmbeddings()
-llm = OpenAI(temperature=0.2, openai_api_key=openai_api_key)
+llm = ChatOpenAI(temperature=0.2)
 
 
 # Load and split documents
